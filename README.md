@@ -70,4 +70,4 @@ Current deliverable: Frontend prototype
 📄 License
 No license has been specified yet. 
 
-FishGuard — Don't take the bait. Dive into safer browsing. 🐠
+FishGuard — Dive Deep. Stay Safe. Browse Safely 🐠
