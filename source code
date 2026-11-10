@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#061c2b">
+<title>FishGuard — Dive Into Safer Browsing</title>
+
+<style>
+:root {
+  --bg: #061c2b;
+  --panel: #0b2b3d;
+  --panel2: #10384a;
+  --cyan: #39d6d0;
+  --aqua: #83f0df;
+  --text: #efffff;
+  --muted: #a4c2ca;
+  --line: #245064;
+  --coral: #ff9b83;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(
+      ellipse at 80% 0%,
+      #12475a 0,
+      transparent 38%
+    ),
+    linear-gradient(
+      180deg,
+      #061c2b,
+      #082536 55%,
+      #061c2b
+    );
+  color: var(--text);
+  font-family: Inter, ui-sans-serif, system-ui,
+    -apple-system, Segoe UI, sans-serif;
+  overflow-x: hidden;
+}
+
+body:before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: .13;
+  background-image:
+    radial-gradient(#a8fff2 1px, transparent 1px);
+  background-size: 34px 34px;
+  mask-image:
+    linear-gradient(to bottom, black, transparent 70%);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.wrap {
+  width: min(1160px, 92%);
+  margin: auto;
+}
+
+/* NAVIGATION */
+
+nav {
+  height: 82px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #ffffff13;
+  position: relative;
+  z-index: 2;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  font-size: 1.35rem;
+  font-weight: 850;
+  letter-spacing: -.7px;
+}
+
+.brand-mark {
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  background:
+    linear-gradient(135deg, var(--cyan), #168dba);
+  display: grid;
+  place-items: center;
+  box-shadow: 0 0 25px #39d6d044;
+  font-size: 23px;
+}
+
+.brand span b {
+  color: var(--cyan);
+}
+
+.navlinks {
+  display: flex;
+  gap: 30px;
+  color: var(--muted);
+  font-size: .92rem;
+}
+
+.navlinks a:hover {
+  color: var(--aqua);
+}
+
+.nav-cta,
+.btn {
+  border: 0;
+  border-radius: 12px;
+  padding: 12px 18px;
+  background: var(--cyan);
+  color: #032431;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 8px 24px #39d6d02a;
+  transition: .2s;
+}
+
+.nav-cta:hover,
+.btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+}
+
+/* HERO */
+
+.hero {
+  min-height: 610px;
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  align-items: center;
+  gap: 35px;
+  padding: 65px 0 75px;
+  position: relative;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #39d6d04d;
+  background: #39d6d012;
+  color: var(--aqua);
+  padding: 8px 13px;
+  border-radius: 99px;
+  font-size: .78rem;
+  font-weight: 750;
+  letter-spacing: .7px;
+  text-transform: uppercase;
+}
+
+.pulse {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #54e7c3;
+  box-shadow: 0 0 0 5px #54e7c322;
+}
+
+.hero h1 {
+  font-size: clamp(3rem, 6vw, 5.25rem);
+  line-height: .99;
+  letter-spacing: -4px;
+  margin: 24px 0 20px;
+  max-width: 680px;
+}
+
+.hero h1 em {
+  font-style: normal;
+  color: var(--cyan);
+}
+
+.hero p {
+  font-size: 1.08rem;
+  line-height: 1.75;
+  color: var(--muted);
+  max-width: 570px;
+  margin: 0 0 30px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 13px;
+  flex-wrap: wrap;
+}
+
+.btn.secondary {
+  background: #ffffff0c;
+  color: var(--text);
+  border: 1px solid #ffffff25;
+  box-shadow: none;
+}
+
+.trustline {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #91b4bf;
+  font-size: .82rem;
+  margin-top: 25px;
+}
+
+.trustline strong {
+  color: #dff;
+}
+
+/* OCEAN VISUAL */
+
+.visual {
+  height: 420px;
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+
+.orb {
+  width: min(360px, 78vw);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background:
+    radial-gradient(
+      circle at 35% 30%,
+      #1d788b,
+      #0b435a 48%,
+      #092a40 70%
+    );
+  border: 1px solid #55e9df55;
+  box-shadow:
+    inset 0 0 55px #39d6d033,
+    0 0 90px #13a8b22b;
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+
+.orb:before,
+.orb:after {
+  content: "";
+  position: absolute;
+  border: 1px solid #7df5e455;
+  border-radius: 50%;
+  inset: 23px;
+  transform: rotate(-25deg) scaleY(.45);
+}
+
+.orb:after {
+  inset: 48px;
+  transform: rotate(35deg) scaleY(.5);
+}
+
+.fish {
+  font-size: 145px;
+  filter: drop-shadow(0 15px 25px #00131d99);
+  transform: scaleX(-1);
+  z-index: 1;
+  animation: swim 4s ease-in-out infinite;
+}
+
+.bubble {
+  position: absolute;
+  border: 1px solid #a8fff288;
+  border-radius: 50%;
+  background: #a8fff21b;
+  animation: float 5s ease-in-out infinite;
+}
+
+.b1 {
+  width: 17px;
+  height: 17px;
+  top: 60px;
+  left: 75px;
+}
+
+.b2 {
+  width: 9px;
+  height: 9px;
+  top: 110px;
+  right: 60px;
+  animation-delay: 1s;
+}
+
+.b3 {
+  width: 24px;
+  height: 24px;
+  bottom: 65px;
+  right: 80px;
+  animation-delay: 2s;
+}
+
+.scan-card {
+  position: absolute;
+  right: -5px;
+  bottom: 25px;
+  background: #0b2b3ded;
+  border: 1px solid #3bd9d577;
+  border-radius: 16px;
+  padding: 15px 18px;
+  box-shadow: 0 18px 45px #00131d88;
+  backdrop-filter: blur(12px);
+  min-width: 190px;
+}
+
+.scan-card small {
+  color: var(--muted);
+}
+
+.scan-card strong {
+  display: block;
+  margin-top: 5px;
+  color: var(--aqua);
+  font-size: 1.1rem;
+}
+
+.scan-card .mini {
+  height: 5px;
+  background: #ffffff19;
+  border-radius: 9px;
+  margin-top: 12px;
+  overflow: hidden;
+}
+
+.scan-card .mini i {
+  display: block;
+  width: 78%;
+  height: 100%;
+  background: var(--cyan);
+  border-radius: 9px;
+}
+
+@keyframes swim {
+  50% {
+    transform:
+      scaleX(-1)
+      translateY(-10px)
+      rotate(-3deg);
+  }
+}
+
+@keyframes float {
+  50% {
+    transform: translateY(-18px);
+  }
+}
+
+/* STATISTICS */
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: -10px;
+  position: relative;
+  z-index: 1;
+}
+
+.stat {
+  padding: 20px 22px;
+  background: #0a2b3b;
+  border: 1px solid #ffffff13;
+  border-radius: 16px;
+}
+
+.stat strong {
+  font-size: 1.45rem;
+  color: var(--aqua);
+}
+
+.stat span {
+  display: block;
+  color: var(--muted);
+  font-size: .83rem;
+  margin-top: 4px;
+}
+
+/* SECTIONS */
+
+section {
+  padding: 78px 0;
+}
+
+.section-head {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 38px;
+}
+
+.section-head .eyebrow {
+  margin-bottom: 15px;
+}
+
+.section-head h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  letter-spacing: -1.5px;
+  margin: 0 0 12px;
+}
+
+.section-head p {
+  color: var(--muted);
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* SCANNER */
+
+.scanner-shell {
+  max-width: 850px;
+  margin: auto;
+  background:
+    linear-gradient(145deg, #10384a, #092637);
+  border: 1px solid #3bd9d544;
+  border-radius: 24px;
+  padding: 30px;
+  box-shadow: 0 25px 70px #00131d66;
+}
+
+.scanner-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 22px;
+}
+
+.scanner-top h3 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.live {
+  font-size: .76rem;
+  color: #69e7bf;
+  display: flex;
+  gap: 7px;
+  align-items: center;
+}
+
+.urlbox {
+  display: flex;
+  gap: 10px;
+  padding: 8px;
+  background: #041b28;
+  border: 1px solid #2b596a;
+  border-radius: 15px;
+}
+
+.urlbox input {
+  flex: 1;
+  min-width: 0;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  color: white;
+  padding: 0 12px;
+  font-size: 1rem;
+}
+
+.urlbox input::placeholder {
+  color: #71929d;
+}
+
+.urlbox button {
+  white-space: nowrap;
+}
+
+.hint {
+  color: #86aab5;
+  font-size: .78rem;
+  margin: 12px 3px 0;
+}
+
+.result {
+  display: none;
+  margin-top: 22px;
+  padding: 20px;
+  border-radius: 16px;
+  background: #061e2c;
+  border: 1px solid #2d6573;
+}
+
+.result.show {
+  display: block;
+}
+
+.result-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.result-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 13px;
+  background: #39d6d01c;
+  display: grid;
+  place-items: center;
+  font-size: 21px;
+}
+
+.result h4 {
+  margin: 0 0 4px;
+}
+
+.result p {
+  margin: 0;
+  color: var(--muted);
+  font-size: .88rem;
+}
+
+.checks {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.check {
+  padding: 12px;
+  border: 1px solid #ffffff12;
+  border-radius: 11px;
+  color: #c7e1e4;
+  font-size: .83rem;
+}
+
+.check b {
+  color: var(--aqua);
+  float: right;
+}
+
+.disclaimer {
+  font-size: .76rem;
+  color: #8baab3;
+  margin: 15px 0 0;
+  line-height: 1.55;
+}
+
+/* FEATURE CARDS */
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+}
+
+.feature {
+  padding: 23px;
+  background:
+    linear-gradient(160deg, #10384a, #0a293a);
+  border: 1px solid #ffffff13;
+  border-radius: 18px;
+  transition: .25s;
+}
+
+.feature:hover {
+  transform: translateY(-5px);
+  border-color: #39d6d066;
+}
+
+.feature .ico {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: #39d6d01b;
+  display: grid;
+  place-items: center;
+  font-size: 23px;
+  margin-bottom: 18px;
+}
+
+.feature h3 {
+  font-size: 1rem;
+  margin: 0 0 9px;
+}
+
+.feature p {
+  font-size: .84rem;
+  line-height: 1.65;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* HOW IT WORKS */
+
+.how {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.step {
+  padding: 25px 23px;
+  border-left: 2px solid #39d6d066;
+  background: #ffffff06;
+  border-radius: 0 15px 15px 0;
+}
+
+.step .num {
+  color: var(--cyan);
+  font-size: .8rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.step h3 {
+  margin: 10px 0 8px;
+}
+
+.step p {
+  color: var(--muted);
+  line-height: 1.65;
+  font-size: .88rem;
+  margin: 0;
+}
+
+/* CTA */
+
+.cta {
+  border: 1px solid #39d6d044;
+  border-radius: 24px;
+  padding: 43px;
+  background:
+    radial-gradient(
+      ellipse at 90% 10%,
+      #1c6270,
+      #0b3042 60%
+    );
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+}
+
+.cta h2 {
+  font-size: 2rem;
+  margin: 0 0 8px;
+}
+
+.cta p {
+  color: var(--muted);
+  margin: 0;
+}
+
+/* FOOTER */
+
+footer {
+  padding: 30px 0;
+  border-top: 1px solid #ffffff13;
+  color: #83a5af;
+  font-size: .82rem;
+}
+
+.foot {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.foot strong {
+  color: var(--aqua);
+}
+
+/* RESPONSIVE DESIGN */
+
+@media(max-width: 850px) {
+  .hero {
+    grid-template-columns: 1fr;
+    padding-top: 55px;
+  }
+
+  .visual {
+    height: 350px;
+  }
+
+  .orb {
+    width: 300px;
+  }
+
+  .fish {
+    font-size: 120px;
+  }
+
+  .features {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .navlinks {
+    gap: 14px;
+  }
+
+  .stats {
+    margin-top: 15px;
+  }
+}
+
+@media(max-width: 560px) {
+  nav {
+    height: 70px;
+  }
+
+  .navlinks {
+    display: none;
+  }
+
+  .hero h1 {
+    letter-spacing: -2.5px;
+  }
+
+  .visual {
+    height: 300px;
+  }
+
+  .orb {
+    width: 255px;
+  }
+
+  .fish {
+    font-size: 100px;
+  }
+
+  .scan-card {
+    right: 0;
+    bottom: 0;
+    min-width: 165px;
+  }
+
+  .stats,
+  .features,
+  .how {
+    grid-template-columns: 1fr;
+  }
+
+  .scanner-shell {
+    padding: 19px;
+  }
+
+  .urlbox {
+    flex-direction: column;
+  }
+
+  .urlbox input {
+    padding: 12px;
+  }
+
+  .checks {
+    grid-template-columns: 1fr;
+  }
+
+  .cta {
+    padding: 28px;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .section-head {
+    text-align: left;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+
+<nav class="wrap">
+  <a class="brand" href="#">
+    <div class="brand-mark">🐟</div>
+    <span>Fish<b>Guard</b></span>
+  </a>
+
+  <div class="navlinks">
+    <a href="#scanner">URL Scanner</a>
+    <a href="#features">Features</a>
+    <a href="#how">How it works</a>
+  </div>
+
+  <a class="nav-cta" href="#scanner">
+    Scan a URL ↗
+  </a>
+</nav>
+
+<main>
+
+<!-- HERO SECTION -->
+
+<div class="wrap hero">
+
+  <div>
+    <div class="eyebrow">
+      <i class="pulse"></i>
+      Your ocean of online safety
+    </div>
+
+    <h1>
+      Dive deep.<br>
+      <em>Stay safe.</em><br>
+      Browse smart.
+    </h1>
+
+    <p>
+      Explore the web with confidence.
+      FishGuard brings threat analysis,
+      web security checks, certificate awareness,
+      and community intelligence together
+      in one intelligent security experience.
+    </p>
+
+    <div class="hero-actions">
+      <a class="btn" href="#scanner">
+        Start a URL scan →
+      </a>
+
+      <a class="btn secondary" href="#features">
+        Explore protection
+      </a>
+    </div>
+
+    <div class="trustline">
+      🛡️
+      <span>
+        Built to help you spot suspicious links
+        before you dive in.
+      </span>
+    </div>
+  </div>
+
+  <div class="visual">
+
+    <div class="orb">
+      <div class="bubble b1"></div>
+      <div class="bubble b2"></div>
+      <div class="bubble b3"></div>
+
+      <div class="fish">🐠</div>
+    </div>
+
+    <div class="scan-card">
+      <small>OCEAN WATCH STATUS</small>
+      <strong>● Systems ready</strong>
+
+      <div class="mini">
+        <i></i>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- STATISTICS -->
+
+<div class="wrap stats">
+
+  <div class="stat">
+    <strong>4-layer</strong>
+    <span>security assessment concept</span>
+  </div>
+
+  <div class="stat">
+    <strong>Real-time UI</strong>
+    <span>interactive scan demonstration</span>
+  </div>
+
+  <div class="stat">
+    <strong>Community</strong>
+    <span>shared threat awareness</span>
+  </div>
+
+</div>
+
+<!-- URL SCANNER -->
+
+<section id="scanner">
+  <div class="wrap">
+
+    <div class="section-head">
+
+      <div class="eyebrow">
+        🫧 The security lagoon
+      </div>
+
+      <h2>Check before you click</h2>
+
+      <p>
+        Paste a website address below to try
+        the FishGuard scanner interface.
+      </p>
+
+    </div>
+
+    <div class="scanner-shell">
+
+      <div class="scanner-top">
+        <h3>🌊 URL Safety Scanner</h3>
+
+        <div class="live">
+          <i class="pulse"></i>
+          READY TO SCAN
+        </div>
+      </div>
+
+      <form class="urlbox" id="scanForm">
+
+        <input
+          id="urlInput"
+          type="text"
+          placeholder="https://example.com"
+          aria-label="Website URL"
+          required
+        >
+
+        <button class="btn" type="submit">
+          Scan website →
+        </button>
+
+      </form>
+
+      <div class="hint">
+        Tip: Enter a full URL, such as
+        https://example.com
+      </div>
+
+      <!-- SCAN RESULTS -->
+
+      <div class="result" id="result"
+           aria-live="polite">
+
+        <div class="result-head">
+
+          <div class="result-icon">
+            🔎
+          </div>
+
+          <div>
+            <h4 id="resultTitle">
+              Demo scan complete
+            </h4>
+
+            <p id="resultText">
+              This is a front-end demonstration.
+            </p>
+          </div>
+
+        </div>
+
+        <div class="checks">
+
+          <div class="check">
+            URL format
+            <b>✓ Checked</b>
+          </div>
+
+          <div class="check">
+            HTTPS scheme
+            <b id="httpsCheck">—</b>
+          </div>
+
+          <div class="check">
+            Domain pattern
+            <b>Demo only</b>
+          </div>
+
+          <div class="check">
+            Threat intelligence
+            <b>Not connected</b>
+          </div>
+
+        </div>
+
+        <p class="disclaimer">
+          Important: This page currently performs
+          only basic browser-side URL formatting
+          checks. It does not contact the website,
+          validate its certificate, query threat
+          databases, or determine whether a site
+          is safe. A real verdict requires a
+          secure backend and trusted
+          threat-intelligence services.
+        </p>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+
+<section id="features">
+  <div class="wrap">
+
+    <div class="section-head">
+
+      <div class="eyebrow">
+        🐚 Protection beneath the surface
+      </div>
+
+      <h2>Four layers. One safer dive.</h2>
+
+      <p>
+        FishGuard is designed around multiple
+        signals instead of relying on a
+        single warning.
+      </p>
+
+    </div>
+
+    <div class="features">
+
+      <div class="feature">
+        <div class="ico">🧠</div>
+
+        <h3>Intelligent Threat Analysis</h3>
+
+        <p>
+          Analyze suspicious URL patterns,
+          redirects, domain signals, and
+          known malicious indicators.
+        </p>
+      </div>
+
+      <div class="feature">
+        <div class="ico">🛡️</div>
+
+        <h3>Web Security Assessment</h3>
+
+        <p>
+          Assess security-related website
+          signals and highlight potential
+          weaknesses or risky behavior.
+        </p>
+      </div>
+
+      <div class="feature">
+        <div class="ico">🔐</div>
+
+        <h3>Certificate Validation</h3>
+
+        <p>
+          Check HTTPS and TLS certificate
+          details, validity periods, and
+          trust-chain information on
+          the server.
+        </p>
+      </div>
+
+      <div class="feature">
+        <div class="ico">🐬</div>
+
+        <h3>Collaborative Intelligence</h3>
+
+        <p>
+          Combine community reports and
+          shared threat indicators to help
+          identify emerging threats.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+
+<section id="how">
+  <div class="wrap">
+
+    <div class="section-head">
+
+      <div class="eyebrow">
+        🧭 Navigate the current
+      </div>
+
+      <h2>How FishGuard works</h2>
+
+      <p>
+        A simple flow that turns a
+        suspicious link into clearer
+        security information.
+      </p>
+
+    </div>
+
+    <div class="how">
+
+      <div class="step">
+
+        <div class="num">01 / SUBMIT</div>
+
+        <h3>Drop in a link</h3>
+
+        <p>
+          Paste the URL you want to
+          investigate into the scanner.
+        </p>
+
+      </div>
+
+      <div class="step">
+
+        <div class="num">02 / ANALYZE</div>
+
+        <h3>Inspect the signals</h3>
+
+        <p>
+          The planned backend checks URL
+          characteristics, security
+          configuration, certificates,
+          and threat feeds.
+        </p>
+
+      </div>
+
+      <div class="step">
+
+        <div class="num">03 / DECIDE</div>
+
+        <h3>Browse with awareness</h3>
+
+        <p>
+          Review a clear risk summary and
+          use caution before sharing
+          information or signing in.
+        </p>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CALL TO ACTION -->
+
+<section>
+  <div class="wrap">
+
+    <div class="cta">
+
+      <div>
+        <h2>Don't take the bait. 🐟</h2>
+
+        <p>
+          Make every click a more informed
+          one with FishGuard.
+        </p>
+      </div>
+
+      <a class="btn" href="#scanner">
+        Try the scanner →
+      </a>
+
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+
+<footer>
+  <div class="wrap foot">
+
+    <div>
+      🐟 <strong>FishGuard</strong>
+      — Dive into safer browsing.
+    </div>
+
+    <div>
+      Student project interface ·
+      Front-end demo ·
+      Not a live security service
+    </div>
+
+    <div>
+      © 2026 FishGuard
+    </div>
+
+  </div>
+</footer>
+
+<!-- JAVASCRIPT -->
+
+<script>
+
+const form = document.getElementById("scanForm");
+
+const input = document.getElementById("urlInput");
+
+const result = document.getElementById("result");
+
+form.addEventListener("submit", function(e) {
+
+  e.preventDefault();
+
+  let raw = input.value.trim();
+
+  let parsed;
+
+  try {
+
+    parsed = new URL(
+      /^https?:\/\//i.test(raw)
+        ? raw
+        : "https://" + raw
+    );
+
+    if (!parsed.hostname.includes(".")) {
+      throw new Error("Invalid domain");
+    }
+
+  } catch (error) {
+
+    result.classList.add("show");
+
+    document.getElementById(
+      "resultTitle"
+    ).textContent = "Please enter a valid URL";
+
+    document.getElementById(
+      "resultText"
+    ).textContent = "Example: https://example.com";
+
+    document.getElementById(
+      "httpsCheck"
+    ).textContent = "—";
+
+    return;
+  }
+
+  result.classList.add("show");
+
+  document.getElementById(
+    "resultTitle"
+  ).textContent = "Demo scan complete";
+
+  document.getElementById(
+    "resultText"
+  ).textContent =
+    "Submitted domain: " + parsed.hostname;
+
+  document.getElementById(
+    "httpsCheck"
+  ).textContent
